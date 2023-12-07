@@ -13,9 +13,9 @@ Below is an overview of the project:
 - 'data': raw and clean data used for the project
 
 # R Scripts
-- 'Introduction & Data'
-- 'Receiving Exploration'
-- 'Passing Exploration'
-- 'Rushing Exploration'
-- 'Other Exploration & Conclusion'
+- 'Introduction & Data': introduction of the data
+- 'Receiving Exploration': exploring receiving in the dataset
+- 'Passing Exploration': exploring passing in the dataset
+- 'Rushing Exploration': exploring rushing in the dataset
+- 'Other Exploration & Conclusion': final exploration, conclusion, and references
 
