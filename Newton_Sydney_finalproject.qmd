@@ -622,6 +622,7 @@ When looking at the three categories, there were high correlations between varia
 
 In the future, it would be interesting to take the players stats analysis and see how it impacted each of the games they played it. You could use this comparison to identiy trends between certain rushing, passing, or recieving stats and whether or not the team won, which could be useful for offensive coaches. 
 
+
 # References
 Fernandez, Daniel. “NFL Offensive Stats 2019 - 2022.” Kaggle, 23 Aug. 2022, www.kaggle.com/datasets/dtrade84/nfl-offensive-stats-2019-2022. 
 
