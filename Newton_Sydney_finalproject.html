@@ -3121,7 +3121,7 @@ Github Repo Link
 <section id="data-overview-quality" class="level1">
 <h1>Data Overview &amp; Quality</h1>
 <p>I am using a dataset from kaggle that showns the offensive stats for every offensive player in every game in the nfl from 2019-2022. The dataset has 69 columns that cover a variety of stats for differet positions, and 19,973 observations. Each observation correlates with one players stats during one NFL game within those 4 years. There are both categorical and numerical variables, althought the dataset has several more numerical variables.</p>
-<p>There was only missingness issues for one variable, which was “Vegas Favorite”. This is the variable that says if the player was considered a favorite in the stats for betting, so it’s not entirely surprising that some of the variables are missing. I don’t believe the issues in this one variable will impact the analysis.</p>
+<p>There was missingness issues for only one variable, which was “Vegas Favorite”. This is the variable that says if the player was considered a favorite in the stats for betting, so it’s not entirely surprising that some of the variables are missing. I don’t believe the issues in this one variable will impact the analysis.</p>
 <p>There was a little bit of cleaning that had to go into this dataset. There were a few defensive players included in the datatset, so I removed those. I also removed a few columns that were not neccesary to my data exploration, such as “player_id”, “team_abbr”, and a few stats that did not relate to offensive player performance. Lastly, I also mutated the game id column so it just showed the year of the game, rather than the long number id.</p>
 </section>
 <section id="exploration" class="level1">
