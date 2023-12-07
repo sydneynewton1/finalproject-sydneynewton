@@ -66,7 +66,7 @@ First, I want to look at receiving.
 
 ### Frequency of Recieving Yards
 
-To begin, I am curious about what the distribution looks like of receiving yards. There are two positions that receive: wide receivers and tight ends. I want to look at the distribution for overalls stats.
+To begin, I am curious about what the distribution looks like of receiving yards. There are two positions that receive: wide receivers and tight ends. I want to look at the distribution for the overall stats.
 
 ```{r echo = FALSE}
 nfloffensiveplayers_new |>
