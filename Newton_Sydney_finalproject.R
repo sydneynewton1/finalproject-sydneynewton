@@ -511,7 +511,7 @@ ggplot(nfl_count, aes(x = position, y = n)) +
 
 #When looking at the three categories, there were high correlations between variables in each one. Receiving yards was heavily correlated with receiving long, and rushing yards was with rushing yards before contact and rush attempts. Additionally, passing yards, pass attempts, and pass completions all had heavy correlations with each other. These correlations all made sense logically, and I expected most of them.
 
-#In the future, it would be interesting to take the players stats analysis and see how it impacted each of the games they played it. You could use this comparison to identiy trends between certain rushing, passing, or recieving stats and whether or not the team won, which could be useful for offensive coaches. 
+#In the future, it would be interesting to take the players stats analysis and see how it impacted each of the games they played it. You could use this comparison to identiy trends between certain rushing, passing, or recieving stats and whether or not the team won, which could be very useful for offensive coaches. 
 
 # References
 #Fernandez, Daniel. “NFL Offensive Stats 2019 - 2022.” Kaggle, 23 Aug. 2022, www.kaggle.com/datasets/dtrade84/nfl-offensive-stats-2019-2022. 
