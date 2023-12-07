@@ -4,7 +4,7 @@ The is an exploration of a dataset contain statistics from every NFL player in e
 
 # What to expect
 
-Below is an overview of the project:
+Below is an overview of my final project project:
 
 - 'Newton_Sydney_progress_memo_1': files from the 1st progress memo
 - 'Newton_Sydney_ProgressMemo2': files from 2nd progress memo
