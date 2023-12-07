@@ -67,7 +67,8 @@ First, I want to look at receiving.
 
 To begin, I am curious about what the distribution looks like of receiving yards. There are two positions that receive: wide receivers and tight ends. I want to look at the distribution for the overall stats.
 
-```{r echo = FALSE}
+```{r}
+#\ label: figure_recydsfreq
 nfloffensiveplayers_new |>
   filter(position == "TE" | position == "WR") |>
   ggplot(aes(x = rec_yds)) +
@@ -76,7 +77,7 @@ nfloffensiveplayers_new |>
 
 ```
 
-The majority of recieving yards lie in the 0-50 range. However, the graph has a right skew, and there are outliers which are players with above 150+ yards in a game.
+@figure_recydsfreq shows that the majority of recieving yards lie in the 0-50 range. However, the graph has a right skew, and there are outliers which are players with above 150+ yards in a game.
 
 Next, I want to look at the distribution for overalls stats by position.
 
