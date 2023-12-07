@@ -1,1 +1,1 @@
-
+The data used is called "nfloffensiveplayers_new", which is a cleaned version of "nfl_offensive_stats". To clean it, I removed columns that were unrelated to my exploration, removed refensive players, and mutates the "game_id" column to "year". Since "Vegas Favorite" has missingness issues but that column was not relevant to my exploration, I removed that as well.
