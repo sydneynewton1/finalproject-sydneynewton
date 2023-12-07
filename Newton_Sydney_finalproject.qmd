@@ -68,30 +68,37 @@ First, I want to look at receiving.
 To begin, I am curious about what the distribution looks like of receiving yards. There are two positions that receive: wide receivers and tight ends. I want to look at the distribution for the overall stats.
 
 ```{r echo = FALSE}
-#| label: figure_recydsfreq
-#| fig-cap: Distribution of Receiving Yards
-nfloffensiveplayers_new |>
+rec_yds_frequency <- nfloffensiveplayers_new |>
   filter(position == "TE" | position == "WR") |>
   ggplot(aes(x = rec_yds)) +
     geom_density(alpha = 0.4, color="lightblue", fill="skyblue") +
     labs(title = "Frequency of Amount of Receiving Yards Per Game", x = "Receiving Yards (yds)")
 
-```
+rec_yds_frequency
 
-The majority of recieving yards lie in the 0-50 range. However, the graph has a right skew, and there are outliers which are players with above 150+ yards in a game.
+ggsave("plots/rec_yds_frequency.png", rec_yds_frequency, width = 6, height = 6)
+```
+![The Distribution of Overall Receiver Yards per Game for Both Tight Ends and Wide Receivers](plot/rec_yds_frequency.png){#fig-plot-1}
+
+@fig-plot-1 shows that majority of recieving yards lie in the 0-50 range. However, the graph has a right skew, and there are outliers which are players with above 150+ yards in a game.
 
 Next, I want to look at the distribution for overalls stats by position.
 
 
 ```{r echo = FALSE}
-nfloffensiveplayers_new |>
+rec_yds_position_frequency <- nfloffensiveplayers_new |>
   filter(position == "WR" | position == "TE") |>
   ggplot(aes(x = rec_yds, color=position, fill=position)) +
     geom_density(alpha = 0.4) +
-    labs(title = "Density of Receiving Yards By Position", x = "Receiving Yards (yds)")
-```
+    labs(title = "Frequency of Receiving Yards By Position", x = "Receiving Yards (yds)")
 
-Splitting up the density plot by position reveals that Tight Ends have lower overall receiving stats than wide receivers. This is not surprising, since tight ends have two jobs: blocking and receiving. Not all tight ends catch, but all wide receivers catch. This difference in position nature explains the difference in the range of receiving yards between the two positions.
+rec_yds_position_frequency
+
+ggsave("plots/rec_yds_position_frequency.png", rec_yds_position_frequency, width = 6, height = 6)
+```
+![The Distribution of Overall Receiver Yards per Game for Tight Ends vs Wide Receivers](plot/rec_yds_position_frequency.png){#fig-plot-2}
+
+@fig-plot-2 reveals that Tight Ends have lower overall receiving stats than wide receivers. This is not surprising, since tight ends have two jobs: blocking and receiving. Not all tight ends catch, but all wide receivers catch. This difference in position nature explains the difference in the range of receiving yards between the two positions.
 
 ### Wide Reciever Receiving Yards Across Years
 
@@ -104,6 +111,8 @@ recyds_nfloffensiveplayers_new <- nfloffensiveplayers_new |>
   summarize(mean_rec_yds = mean(rec_yds))
 
 kable(recyds_nfloffensiveplayers_new)
+
+ggsave("plots/wide_rec_tbl.png", rec_yds_frequency, width = 6, height = 6)
 ```
 
 The receiving yards by year of wide receivers shows a unique trend. The average yards went up in 2020, but then when down in 2021 and 2022. However, the average has not changed significantly, only going down a total of an average of 2 yards. This shows that the emphasis on throwing in the NFL has remained fairly consistent, and that the talent in the NFL has also stayed consistent. 
