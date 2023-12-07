@@ -47,7 +47,7 @@ nfloffensiveplayers_new <- nfloffensiveplayers |>
   select(player, position, year, team, rec, rec_yds, rec_td, rec_long, rec_yds_bonus, pass_cmp, pass_att, pass_yds, pass_int, pass_sacked, pass_sacked_yds, pass_long, pass_rating, pass_target_yds, pass_poor_throws, pass_blitzed, pass_hurried, rush_att, rush_yds, rush_td, rush_long, rush_yac, rush_broken_tackles, rush_scrambles, rush_yds_before_contact, targets, fumbles_lost)
 
 # Save clean data to CSV
-write.csv(nfloffensiveplayers_new, "nfloffensiveplayers_new.csv", row.names = FALSE)
+write.csv(nfloffensiveplayers_new, "data/nfloffensiveplayers_new.csv", row.names = FALSE)
 ```
 
 I am using a dataset from kaggle that showns the offensive stats for every offensive player in every game in the nfl from 2019-2022. The dataset has 69 columns that cover a variety of stats for differet positions, and 19,973 observations. Each observation correlates with one players stats during one NFL game within those 4 years. There are both categorical and numerical variables, althought the dataset has several more numerical variables.  
