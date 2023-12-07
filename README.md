@@ -13,7 +13,8 @@ Below is an overview of my final project project:
 - 'data': raw and clean data used for the project
 
 # R Scripts
-- 'Introduction & Data': introduction of the data
+- 'Loading Libraries & Data': title page and loading needed data and libraries
+- 'Introduction & Data': introduction of the project and data
 - 'Receiving Exploration': exploring receiving in the dataset
 - 'Passing Exploration': exploring passing in the dataset
 - 'Rushing Exploration': exploring rushing in the dataset
