@@ -1,5 +1,5 @@
 ---
-title: "Final Project"
+title: "An Analysis of NFL Offensive Stats"
 subtitle: |
   | Data Science 1 with R (STAT 301-1)
 format:
