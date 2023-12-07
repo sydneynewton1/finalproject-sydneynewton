@@ -111,23 +111,25 @@ recyds_nfloffensiveplayers_new <- nfloffensiveplayers_new |>
   summarize(mean_rec_yds = mean(rec_yds))
 
 kable(recyds_nfloffensiveplayers_new)
-
-ggsave("plots/wide_rec_tbl.png", rec_yds_frequency, width = 6, height = 6)
 ```
 
 The receiving yards by year of wide receivers shows a unique trend. The average yards went up in 2020, but then when down in 2021 and 2022. However, the average has not changed significantly, only going down a total of an average of 2 yards. This shows that the emphasis on throwing in the NFL has remained fairly consistent, and that the talent in the NFL has also stayed consistent. 
 
 ```{r echo = FALSE}
-nfloffensiveplayers_new |>
+wide_rec_year <- nfloffensiveplayers_new |>
   filter(position == "WR") |>
   ggplot(aes(x = year, y = rec_yds, fill=year)) +
   geom_boxplot() +
   labs(title = "Wide Reciever Recieving Yards by Year",
        x = "Year",
        y = "Recieving Yards", fill="Year")
-```
+wide_rec_year
 
-When looking at the range year by year, it's also fairly consistent. There seem to be many outliers each year, and there is one extreme outliers in 2020 and 2022.
+ggsave("plots/wide_rec_year.png", wide_rec_year, width = 6, height = 6)
+```
+![The Distribution of Receiving Yards in 2019, 2020, 2021, and 2022 for Wide Receivers](plot/wide_rec_year.png){#fig-plot-3}
+
+The range in @fig-plot-3 year by year is also fairly consistent. There seem to be many outliers each year, and there is one extreme outliers in 2020 and 2022.
 
 ### Top Wide Receivers
 
@@ -175,16 +177,21 @@ kable(recydste_nfloffensiveplayers_new)
 The average receiving stats of tight ends each year is more consistent than wide receivers, remaining around 17 each year, although it was higher in 2019.
 
 ```{r echo = FALSE}
-nfloffensiveplayers_new |>
+tight_end_year <- nfloffensiveplayers_new |>
   filter(position == "TE") |>
   ggplot(aes(x = year, y = rec_yds, fill=year)) +
   geom_boxplot() +
   labs(title = "Tight End Recieving Yards by Year",
        x = "Year",
        y = "Recieving Yards", fill= "Year")
-```
 
-When looking at the boxplot graph, there are similar ranges across years. There also seems to be several outliers each year. However, 2020 and 2021 have higher outliers than either of the other years.
+tight_end_year
+
+ggsave("plots/tight_end_year.png", tight_end_year, width = 6, height = 6)
+```
+![The Distribution of Receiving Yards by for 2019, 2020, 2021, and 2022 for Tight Ends](plot/tight_end_year.png){#fig-plot-4}
+
+When looking at @fig-plot-4, there are similar ranges across years. There also seems to be several outliers each year. However, 2020 and 2021 have higher outliers than either of the other years.
 
 ### Top Tight Ends
 
@@ -241,11 +248,16 @@ rec_yds_count <- nfl_filtered |>
   ungroup()
 
 # Create a side-by-side bar graph
-ggplot(rec_yds_count, aes(x = year, y = total_rec_yds, fill = position)) +
+total_rec_yds_position <- rec_yds_count |>
+ggplot(aes(x = year, y = total_rec_yds, fill = position)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(title = "Total Receiving Yards by Year and Position", x = "Year", y = "Total Receiving Yards", fill="Position") +
   theme_minimal()
+total_rec_yds_position
+
+ggsave("plots/total_rec_yds_position.png", total_rec_yds_position, width = 6, height = 6)
 ```
+![A side-by-side comparison of the total receiving yards for Tight Ends versus Wide Receivers for each year in the data](plot/total_rec_yds_position.png){#fig-plot-5}
 
 ```{r echo = FALSE, message = FALSE}
 nfl_filtered <- nfloffensiveplayers_new[nfloffensiveplayers_new$position %in% c("WR", "TE"),]
@@ -253,18 +265,23 @@ nfl_filtered <- nfloffensiveplayers_new[nfloffensiveplayers_new$position %in% c(
 # Count total rec_yds for each player
 rec_yds_count <- nfl_filtered |>
   group_by(position, year) |>
-  summarise(mean_rec_yds = mean(rec_yds)) |>
+  summarise(avg_rec_yds = mean(rec_yds)) |>
   ungroup()
 
 # Create a side-by-side bar graph
-ggplot(rec_yds_count, aes(x = year, y = mean_rec_yds, fill = position)) +
+avg_rec_yds_position <- rec_yds_count |>
+ggplot(aes(x = year, y = avg_rec_yds, fill = position)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(title = "Average Receiving Yards by Year and Position", x = "Year", y = "Average Receiving Yards", fill="Position") +
   theme_minimal()
+
+avg_rec_yds_position
+
+ggsave("plots/avg_rec_yds_position.png", avg_rec_yds_position, width = 6, height = 6)
 ```
+![A side-by-side comparison of the average receiving yards individual Tight Ends versus Wide Receivers across 4 years](plot/avg_rec_yds_position.png){#fig-plot-6}
 
-
-From the graph, it is clear that wide receivers have a much higher amount of receiving yards than tight ends, both total and average. Neither of these graphs is surprising.
+@fig-plot-5 and @fig-plot-6 make it clear that wide receivers have a much higher amount of receiving yards than tight ends, both total and average. Neither of these graphs is surprising.
 
 First, there are 3 wide recievers on a team, compared to 1 tight end on a team. This explains why the total receiving yards is higher. Second, since the positions functions differently, it is understandable why the average receiving yards is higher for wide receivers.
 
