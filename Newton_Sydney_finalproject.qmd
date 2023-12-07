@@ -68,6 +68,13 @@ First, I want to look at receiving.
 
 To begin, I am curious about what the distribution looks like of receiving yards. There are two positions that receive: wide receivers and tight ends. I want to look at the distribution for overalls stats.
 
+```{r echo = FALSE}
+nfloffensiveplayers_new |>
+  filter(position == "TE" | position == "WR") |>
+  ggplot(aes(x = rec_yds)) +
+    geom_density(alpha = 0.4, color="lightblue", fill="skyblue") +
+    labs(title = "Density of Receiving Yards", x = "Receiving Yards (yds)")
+```
 
 The majority of recieving yards lie in the 0-50 range. However, the graph has a right skew, and there are outliers which are players with above 150+ yards in a game.
 
