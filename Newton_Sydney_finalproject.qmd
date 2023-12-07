@@ -53,7 +53,7 @@ write.csv(nfloffensiveplayers_new, "data/nfloffensiveplayers_new.csv", row.names
 
 I am using a data set from kaggle.com that shown the offensive stats for every offensive player in every game in the NFL from 2019-2022. The data set has 69 columns that cover a variety of stats for different positions, and 19,973 observations. Each observation correlates with one players stats during one NFL game within those 4 years. There are both categorical and numerical variables, although the data set has several more numerical variables.  
 
-There was missingness issues for only one variable, which was "Vegas Favorite". This is the variable that says if the player was considered a favorite in the stats for betting, so it's not entirely surprising that some of the variables are missing. I don't believe the issues in this one variable will impact the analysis.
+There was missingness issues for only one variable, which was "Vegas Favorite". It had 46 missing variables. This is the variable that says if the player was considered a favorite in the stats for betting, so it's not entirely surprising that some of the variables are missing. I don't believe the issues in this one variable will impact the analysis.
 
 There was a little bit of cleaning that had to go into this data set. There were a few defensive players included in the datatset, so I removed those. I also removed a few columns that were not necessary to my data exploration, such as "player_id", "team_abbr", and a few stats that did not relate to offensive player performance. Lastly, I also mutated the game id column so it just showed the year of the game, rather than the long number id.
 
@@ -157,9 +157,9 @@ kable(nfloffensiveplayers_new_top5)
 
 After looking into it more, I found that the outlier in 2020 was Tyreek Hill and the outlier in 2022 was Ja'Marr Chase.
 
-After exploring further, I learned that Tyreek Hill got 269 receiving yards while he played for the Kansas City Chiefs in a game against the Tampa Bay Bucaneers. I personally remember watching this game, and I recalled it as soon as I saw the outlier, which is why I wanted to explore further. Ja'Marr Chase got 266 receiving yards for the Cinncinati Bengals in a game against the Jacksonville Jaguars.
+After exploring further, I learned that Tyreek Hill got 269 receiving yards while he played for the Kansas City Chiefs in a game against the Tampa Bay Buccaneers. I personally remember watching this game, and I recalled it as soon as I saw the outlier, which is why I wanted to explore further. Ja'Marr Chase got 266 receiving yards for the Cincinnati Bengals in a game against the Jacksonville Jaguars.
 
-Both of these games set records, with Hill holding the 14th most recieving yards in a single game of all time and Chase holding the 16th most. Taking these stats into consideration, it makes sense that the outliers look so significant in the distribution.
+Both of these games set records, with Hill holding the 14th most receiving yards in a single game of all time and Chase holding the 16th most. Taking these stats into consideration, it makes sense that the outliers look so significant in the distribution.
 
 ### Tight End Receiving Yards Across Years
 
@@ -292,7 +292,9 @@ rec_yds_cor <- nfloffensiveplayers_new |>
   filter(position == "WR" | position == "TE") |>
   select(rec_yds, rec_td, rec_long, rec_yds_bonus) |>
   cor() |>
-  ggcorrplot()
+  ggcorrplot() +
+  labs(title="Correlation Plot for Statistics Relating to Receiving")
+rec_yds_cor
 
 ggsave("plots/rec_yds_cor.png", rec_yds_cor, width = 6, height = 6)
 ```
@@ -317,7 +319,7 @@ ggsave("plots/correlation_rec.png", correlation_rec, width = 6, height = 6)
 ```
 ![A correlation plot showing the relationship between receiving yards and receiving long](plot/correlation_rec.png){#fig-plot-8}
 
-```{r}
+```{r echo = FALSE}
 nfl_rec <- nfloffensiveplayers_new |>
    filter(position == "WR" | position == "TE") |>
   select(rec_yds, rec_long) |>
@@ -396,7 +398,8 @@ pass_cor <- nfloffensiveplayers_new |>
   filter(position == "QB") |>
   select(pass_cmp, pass_yds, pass_att, pass_int, pass_sacked, pass_rating, pass_target_yds, pass_poor_throws, pass_blitzed, pass_hurried) |>
   cor() |>
-  ggcorrplot()
+  ggcorrplot() +
+  labs(title="Correlation Plot for Statistics Relating to Passing")
 
 pass_cor
 
@@ -413,7 +416,8 @@ First, I want to further explore the correlation between passing yards, pass com
 ```{r echo = FALSE}
 pass_var_core <- nfloffensiveplayers_new |>
   select(pass_cmp, pass_att, pass_yds) |>
-  ggpairs(aes(alpha = 0.2))
+  ggpairs(aes(alpha = 0.2)) +
+  labs(title="The Correlation Between Pass Completions, Pass Attempts, and Pass Yards", x="Yards", y="Frequency")
 
 pass_var_core
 
@@ -576,7 +580,8 @@ rushyds_cor <- nfloffensiveplayers_new |>
   filter(position == "RB") |>
   select(rush_yds, rush_att, rush_td, rush_long, rush_scrambles, rush_yds_before_contact, rush_yac, rush_broken_tackles) |>
   cor() |>
-  ggcorrplot()
+  ggcorrplot()+
+  labs(title="Correlation Plot for Statistics Relating to Rushing")
 rushyds_cor
 
 ggsave("plots/rushyds_cor.png", rushyds_cor, width = 6, height = 6)
@@ -624,7 +629,7 @@ nfl_rushyds_comparison <- nfloffensiveplayers_new |>
   ggplot(aes(x = rush_att, y = rush_yds_before_contact)) +
   geom_point(alpha=0.3) +
   geom_smooth(method = "lm") +
-  labs(title = "Rushing Yards vs. Rushing Yards Before Contact",
+  labs(title = "The Relationship between Rushing Yards and Rushing Yards Before Contact",
        x = "Rushing Yards",
        y = "Rushing Yards Before Contact")
 nfl_rushyds_comparison
@@ -710,6 +715,7 @@ ggsave("plots/freq_pos_year.png", freq_pos_year, width = 6, height = 6)
 ![A side-by-side comparison of the number of players for each positions for each in 2019, 2020, 2021, and 2022](plot/freq_pos_year.png){#fig-plot-22}
 
 @fig-plot-22 shows that of the positions remained fairly consistent throughout each year, except for the decrease in 2022. This disparity can be explained by the fact that this dataset was created in 2022, so they likely missed players that were recruited towards the end of the year.
+
 
 # Conclusion
 
